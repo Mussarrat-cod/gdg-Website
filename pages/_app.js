@@ -9,7 +9,11 @@ import { lightTheme } from "@/constants/theme";
 import GlobalStyles from "@/constants/globalStyles";
 import GradientAnimation from "@/components/gradientAnimation/GradientAnimation";
 import Layout from "@/components/layout";
-import Loader from "@/components/display/loader/Loader";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(() => import("@/components/display/loader/Loader"), {
+  ssr: false
+});
 
 const myFont = localFont({
   src: [

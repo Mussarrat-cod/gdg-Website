@@ -47,6 +47,7 @@ You can explore a live demo of the GDSC MVJCE Website at [Demo Link](https://gds
 - Styled-components
 - React-three-fiber
 - Prisma
+- Supabase (PostgreSQL)
 
 ## Packages Used
 
@@ -83,11 +84,18 @@ Here are the main packages used in the project:
 The project relies on environment variables stored in a .env. file located at the root of the directory to manage configurations. Ensure that essential variables such as database connection strings, API keys, or any other sensitive information are properly set up.
 
 ```bash
-DATABASE_URL: "*YOUR-DB-URL*"
-NEXT_PUBLIC_APIKEY: "*YOUR-NEXT-PUBLIC-KEY*".
+DATABASE_URL="postgresql://postgres:[PASSWORD]@db.[PROJECT-REF].supabase.co:5432/postgres?pgbouncer=true&connection_limit=1"
+NEXT_PUBLIC_SUPABASE_URL="https://[PROJECT-REF].supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key-here"
+NEXT_PUBLIC_APIKEY="your-api-key-here"
 ```
 
-Be sure to replace `*YOUR-DB-URL*` with your actual MySQL database url containing data and `*YOUR-NEXT-PUBLIC-KEY*` with your Next.js public API key. These values should be obtained from the respective services and kept confidential.
+Be sure to replace the placeholders with your actual Supabase credentials:
+- `[PASSWORD]` - Your Supabase database password
+- `[PROJECT-REF]` - Your Supabase project reference
+- Get these values from your Supabase project settings (Settings → API and Settings → Database)
+
+For detailed setup instructions, see [SUPABASE_SETUP.md](./SUPABASE_SETUP.md).
 
 **Note**: Environment variables containing sensitive information like API keys, database credentials, or any other secrets should not be committed to version control. Ensure that the `.env` files are included in your project's `.gitignore` file to prevent accidental exposure of sensitive data.
 
@@ -115,6 +123,8 @@ npx prisma generate
 npx prisma db push
 npm run dev
 ```
+
+**Note:** Make sure to set up your Supabase project and configure your `.env` file before running `npx prisma db push`. See [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for detailed instructions.
 
 ## Folder Structure
 
