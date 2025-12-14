@@ -4,15 +4,13 @@ import { devices } from "@/constants/theme";
 
 export const DomainSideNavContainer = styled(motion.div)`
   position: absolute;
-  left: 50%;
+  right: 1rem;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
 
   @media screen and (${devices.lg}) {
     display: none;
