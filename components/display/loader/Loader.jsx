@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { LoaderContainer } from "./Loader.styled";
-import Lottie from "lottie-react";
-import LogoAnimationData from "@/public/logos/logo-animation-lottie.json";
+import { LoaderContainer, DotContainer, Dot } from "./Loader.styled";
 
 const Loader = () => {
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (!LogoAnimationData || !LogoAnimationData.assets) {
-      console.error("Invalid Lottie animation data");
-      setHasError(true);
-      setErrorMessage("Invalid animation data structure");
-    }
-  }, []);
-
   const handleAnimationError = (error) => {
-    console.error("Lottie animation error:", error);
+    console.error("Animation error:", error);
     setHasError(true);
     setErrorMessage(error?.message || "Animation failed to load");
   };
@@ -32,17 +22,12 @@ const Loader = () => {
 
   return (
     <LoaderContainer>
-      <Lottie
-        animationData={LogoAnimationData}
-        loop={false}
-        style={{
-          width: "100vw",
-          maxWidth: "1400px",
-          height: "auto"
-        }}
-        className="loader"
-        onError={handleAnimationError}
-      />
+      <DotContainer className="loader">
+        <Dot color="#4285F4" delay={0} position={0} /> {/* Blue */}
+        <Dot color="#EA4335" delay={0.1} position={1} /> {/* Red */}
+        <Dot color="#FBBC04" delay={0.2} position={2} /> {/* Yellow */}
+        <Dot color="#34A853" delay={0.3} position={3} /> {/* Green */}
+      </DotContainer>
     </LoaderContainer>
   );
 };

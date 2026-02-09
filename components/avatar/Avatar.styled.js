@@ -1,6 +1,9 @@
 import { css, styled } from "styled-components";
+import isPropValid from "@emotion/is-prop-valid";
 
-export const AvatarWrapper = styled.div`
+export const AvatarWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== "blur"
+})`
   ${({ size }) =>
     (size === "xs" &&
       css`

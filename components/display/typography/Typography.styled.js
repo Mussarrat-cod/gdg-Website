@@ -1,7 +1,10 @@
 import { styled } from "styled-components";
 import { devices, mobileTypography, typography } from "@/constants/theme";
+import isPropValid from "@emotion/is-prop-valid";
 
-export const TypographyWrapper = styled.div`
+export const TypographyWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== "subdued" && prop !== "variant"
+})`
   font-style: normal;
   background-color: inherit;
   transform-style: preserve-3d;
